@@ -1,6 +1,6 @@
 class Blender {
 
-    powerOn = false;
+    isOn = false;
     currentSpeed = 0;
     blenderSpeeds = [0, 1, 2, 3, 4];
 
@@ -9,28 +9,37 @@ class Blender {
     }
 
     turnOn() {
-        this.powerOn = true;
+        this.isOn = true;
     }
 
     turnOff() {
-        this.powerOn = false;
-
+        this.isOn = false;
     }
+
     showBrand() {
         return this.brand;
     }
-    validatePowerOn() {
-        return this.powerOn;
-    }
-    liquefy() {
-        return 'liquefying... Speed: ' + this.currentSpeed;
 
+    validateIsOn() {
+        return this.isOn;
     }
-    showCurrentSpeed() {
-        return this.currentSpeed;
+
+    liquefy() {
+        if (!this.isOn)
+            return false;
+
+        return this.isOn;
     }
-    validateSpeed(Speed) {
-        return this.blenderSpeeds.includes(Speed);
+
+    setSpeed(speed) {
+        if (!this.validateSpeed(speed))
+            return 0;
+
+        this.currentSpeed = speed;
+    }
+
+    validateSpeed(speed) {
+        return this.blenderSpeeds.includes(speed);
     }
 
 }
