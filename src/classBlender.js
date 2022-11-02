@@ -1,62 +1,59 @@
 class Blender {
 
-    name = "";
-    isOn = false;
-    currentSpeed = 0;
-    blenderSpeeds = [0, 1, 2, 3, 4];
+  name = "";
+  isOn = false;
+  currentSpeed = 0;
+  blenderSpeeds = [0, 1, 2, 3, 4];
 
 
-    constructor(brand) {
-        this.brand = brand;
+  constructor(brand) {
+    this.brand = brand;
+  }
 
-    }
+  turnOn() {
+    this.isOn = true;
+  }
 
-    turnOn() {
-        this.isOn = true;
-    }
+  turnOff() {
+    this.isOn = false;
+  }
 
-    turnOff() {
-        this.isOn = false;
-    }
+  showBrand() {
+    return this.brand;
+  }
 
-    showBrand() {
-        return this.brand;
-    }
+  validateIsOn() {
+    return this.isOn;
+  }
 
-    validateIsOn() {
-        return this.isOn;
-    }
+  liquefy(speed) {
+    if (!this.isOn)
+      throw new Exception("error", "La licuadora no esta encendida", 1);
 
-    liquefy(speed) {
-        if (!(this.isOn || this.validateSpeed(speed)))
-            throw new Exception("error", "La licuadora esta encendida o la velocidad no es valida", 1);
-        this.currentSpeed = speed;
+    this.currentSpeed = speed;
+    this.validateSpeed(speed);
+  }
 
-    }
-
-    validateSpeed(speed) {
-        if (!this.blenderSpeeds.includes(speed))
-            throw new Exception("error", "message", 2);
-
-    }
-
+  validateSpeed(speed) {
+    if (!this.blenderSpeeds.includes(speed))
+      throw new Exception("error", " la velocidad no es valida", 2);
+  }
 }
-
 class Exception {
 
-    error;
-    message;
-    code;
+  error;
+  message;
+  code;
 
-    constructor(error, message, code) {
-        this.error = error;
-        this.message = message;
-        this.code = code
-    }
+  constructor(error, message, code) {
+    this.error = error;
+    this.message = message;
+    this.code = code
+  }
 
-    showMessaError() {
-        console.log(`Error: ${this.error} exception: ${this.message} status: ${this.code}`)
-    }
+  showMessaError() {
+    console.log(`Error: ${this.error} exception: ${this.message} status: ${this.code}`)
+  }
 }
 
 module.exports = Blender

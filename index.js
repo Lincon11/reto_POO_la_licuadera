@@ -20,7 +20,7 @@ do {
     console.log("Escoje tu opción:");
     let opcionSelecionada = scanf("%d");
     console.log("");
-    console.log(superMixer.isOn);
+
     salir = opcionSelecionada;
 
     switch (opcionSelecionada) {
@@ -36,6 +36,7 @@ do {
             let speed = scanf("%d");
             try {
                 superMixer.liquefy(speed);
+                console.log('Licuando...');
             } catch (error) {
                 error.showMessaError()
             }
